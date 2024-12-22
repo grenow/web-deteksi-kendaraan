@@ -18,7 +18,7 @@
                 <h3 class="card-title">Upload Video</h3>
             </div>
             <div class="card-body">
-                <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+                <form id="upload-form" action="upload.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="video" class="form-label">Choose a video file:</label>
                         <input type="file" id="video" name="video" class="form-control" accept="video/*" required>
@@ -46,7 +46,10 @@
                 <h3 class="card-title"></h3>
             </div>
             <div class="card-body text-center">
-                <img id="video-stream" src="" alt="Video Stream" class="img-fluid rounded" style="max-width: 100%; height: auto;">
+                <video id="video-stream" controls style="max-width: 100%; height: auto;">
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </div>
@@ -57,7 +60,7 @@
     <script>
         // Fetch daftar video dari server
         async function fetchVideos() {
-            const response = await fetch('/videos');
+            const response = await fetch('/videos.php');
             const data = await response.json();
             const videoList = document.getElementById('video-list');
             videoList.innerHTML = '';
